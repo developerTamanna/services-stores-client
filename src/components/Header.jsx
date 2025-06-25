@@ -1,0 +1,106 @@
+import React, { useContext, useState } from 'react';
+import { NavLink } from 'react-router';
+import { AuthContext } from '../contexts/AuthProvider';
+import ThemeToggle from './ThemeToggle';
+
+const Header = () => {
+  const { user, logout } = useContext(AuthContext); // ✅ useContext used correctly
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogout = () => {
+    logout()
+      .then(() => console.log('Logged out'))
+      .catch((error) => console.error(error));
+  };
+
+  // ✅ Common class with active styling
+  const linkClass = ({ isActive }) =>
+    isActive
+      ? 'text-white border-b-4 border-blue-500 pb-1' // ✅ Active link
+      : 'text-white hover:text-blue-400';
+
+  const menuItems = (
+    <>
+      <NavLink to="/" className={linkClass}>
+        Home
+      </NavLink>
+      {/* <ThemeToggle></ThemeToggle> */}
+      <NavLink to="/services" className={linkClass}>
+        Services
+      </NavLink>
+      {user ? (
+        <>
+          <NavLink to="/addService" className={linkClass}>
+            Add Service
+          </NavLink>
+          <NavLink to="/myServices" className={linkClass}>
+            My Services
+          </NavLink>
+          <NavLink to="/myReviews" className={linkClass}>
+            My Reviews
+          </NavLink>
+          <button
+            onClick={handleLogout}
+            className="text-white hover:text-red-400"
+          >
+            Logout
+          </button>
+          <div className="relative group">
+            <img
+              src={user?.photoURL}
+              alt="User Avatar"
+              className="w-8 h-8 rounded-full border border-white"
+            />
+            <div className="absolute bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition top-full mt-1">
+              {user?.displayName}
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <NavLink to="/login" className={linkClass}>
+            Login
+          </NavLink>
+          <NavLink to="/register" className={linkClass}>
+            Register
+          </NavLink>
+        </>
+      )}
+    </>
+  );
+
+  return (
+    <header className="bg-black shadow-md sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        {/* Logo */}
+        <NavLink to="/" className="text-2xl font-bold text-white">
+          ServicePoint
+        </NavLink>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center space-x-6 font-medium">
+          {menuItems}
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white text-2xl"
+          >
+            {isOpen ? '✕' : '☰'}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Nav */}
+      {isOpen && (
+        <div className="md:hidden bg-gray-900 px-6 py-4 space-y-3 flex flex-col">
+          {menuItems}
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
