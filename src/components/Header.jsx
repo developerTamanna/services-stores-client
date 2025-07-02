@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink } from 'react-router';
 import { AuthContext } from '../contexts/AuthProvider';
 import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
-  const { user, logout } = useContext(AuthContext); // ✅ useContext used correctly
+  const { user, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
@@ -13,21 +13,20 @@ const Header = () => {
       .catch((error) => console.error(error));
   };
 
-  // ✅ Common class with active styling
   const linkClass = ({ isActive }) =>
     isActive
-      ? 'text-white border-b-4 border-blue-500 pb-1' // ✅ Active link
-      : 'text-white hover:text-blue-400';
+      ? 'dark:text-white text-black border-b-4 border-blue-500 pb-1'
+      : 'dark:text-white text-black hover:text-blue-400';
 
   const menuItems = (
     <>
       <NavLink to="/" className={linkClass}>
         Home
       </NavLink>
-      {/* <ThemeToggle></ThemeToggle> */}
       <NavLink to="/services" className={linkClass}>
         Services
       </NavLink>
+      <ThemeToggle />
       {user ? (
         <>
           <NavLink to="/addService" className={linkClass}>
@@ -41,17 +40,19 @@ const Header = () => {
           </NavLink>
           <button
             onClick={handleLogout}
-            className="text-white hover:text-red-400"
+            className="dark:text-white text-black hover:text-red-500 font-medium"
           >
             Logout
           </button>
+
           <div className="relative group">
             <img
               src={user?.photoURL}
               alt="User Avatar"
+              referrerPolicy="no-referrer"
               className="w-8 h-8 rounded-full border border-white"
             />
-            <div className="absolute bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition top-full mt-1">
+            <div className="absolute bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition top-full mt-1 whitespace-nowrap">
               {user?.displayName}
             </div>
           </div>
@@ -70,10 +71,13 @@ const Header = () => {
   );
 
   return (
-    <header className="bg-black shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <header className="dark:bg-black bg-white shadow-md sticky w-full top-0 z-50">
+      <div className="w-11/12 mx-auto  py-3 flex items-center justify-between">
         {/* Logo */}
-        <NavLink to="/" className="text-2xl font-bold text-white">
+        <NavLink
+          to="/"
+          className="text-2xl font-bold dark:text-white text-black"
+        >
           ServicePoint
         </NavLink>
 
@@ -86,7 +90,7 @@ const Header = () => {
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white text-2xl"
+            className="dark:text-white text-black text-2xl"
           >
             {isOpen ? '✕' : '☰'}
           </button>
@@ -95,7 +99,7 @@ const Header = () => {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden bg-gray-900 px-6 py-4 space-y-3 flex flex-col">
+        <div className="md:hidden dark:bg-gray-900 bg-white px-6 py-4 space-y-3 flex flex-col">
           {menuItems}
         </div>
       )}

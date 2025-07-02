@@ -6,10 +6,9 @@ import Banner from '../components/Banner';
 
 const MainLayout = () => {
   return (
-    <div className='w-11/12 mx-auto bg-black'>
+    <div className='w-full mx-auto dark:bg-black bg-white'>
       <Header></Header>
-
-      <div className="min-h-screen">
+      <div className="min-h-screen w-11/12 mx-auto mt-10">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

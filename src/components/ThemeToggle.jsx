@@ -1,22 +1,41 @@
 // ThemeToggle.jsx
 import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react'; // optional icons
+import localforage from "localforage";
 
 const ThemeToggle = () => {
   const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (darkMode) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-  }, [darkMode]);
+ useEffect(() => {
+    const loadTheme = async () => {
+      const savedTheme = await localforage.getItem('theme');
+      const finalTheme = savedTheme || 'light';
+
+      // Apply theme class
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(finalTheme);
+
+      setDarkMode(finalTheme);
+    };
+
+    loadTheme();
+  }, []);
+
+  const toggleTheme = async () => {
+   console.log("tesjhfjksdhfdksfjsdkl");
+    const newTheme = darkMode === 'dark' ? 'light' : 'dark';
+
+    // Update DOM
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(newTheme);
+
+    setDarkMode(newTheme);
+    await localforage.setItem('theme', newTheme);
+  };
 
   return (
     <button
-      onClick={() => setDarkMode(!darkMode)}
+      onClick={toggleTheme}
       className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:scale-105 transition"
       title={`Switch to ${darkMode ? 'Light' : 'Dark'} mode`}
     >

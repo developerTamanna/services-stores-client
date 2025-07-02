@@ -19,7 +19,7 @@ const Home = () => {
       <div>
         <FeaturedSection></FeaturedSection>
       </div>
-      <div className='mt-10'><WhyChooseUs></WhyChooseUs></div>
+      <div className=''><WhyChooseUs></WhyChooseUs></div>
       <div></div>
       <div>
         <CountupSection></CountupSection>

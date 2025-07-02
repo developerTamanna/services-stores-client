@@ -15,42 +15,43 @@ const CountupSection = () => {
   }, []);
 
   return (
-    <div className="bg-gray-900 text-white py-12 px-6 mt-10">
+    <section className="bg-gray-50 dark:bg-gray-900 text-black dark:text-white py-10 px-4 md:px-10 mt-20">
+      {/* শিরোনাম + ডিভাইডার */}
       <div className="relative my-10">
-        {/* Thin full-width line */}
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
-          <div className="w-full border-t border-gray-500"></div>
+          <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
         </div>
-
-        {/* Centered text */}
         <div className="relative flex justify-center">
-          <span className="bg-gray-900 px-4 text-2xl font-semibold text-white">
-            Platform Stats
+          <span className="bg-gray-50 dark:bg-gray-900 px-4 text-2xl font-semibold">
+            Platform&nbsp;Stats
           </span>
         </div>
       </div>
 
+      {/* কাউন্ট-আপ সংখ্যা */}
       <div className="grid md:grid-cols-3 gap-8 text-center">
         <div>
-          <h3 className="text-5xl font-bold text-green-400">
+          <h3 className="text-5xl font-bold text-green-600 dark:text-green-400">
             <CountUp end={stats.userCount} duration={2} />
           </h3>
-          <p className="mt-2 text-lg">Total Users</p>
+          <p className="mt-2 text-lg">Total&nbsp;Users</p>
         </div>
+
         <div>
-          <h3 className="text-5xl font-bold text-yellow-400">
+          <h3 className="text-5xl font-bold text-yellow-500 dark:text-yellow-400">
             <CountUp end={stats.reviewCount} duration={2} />
           </h3>
-          <p className="mt-2 text-lg">Total Reviews</p>
+          <p className="mt-2 text-lg">Total&nbsp;Reviews</p>
         </div>
+
         <div>
-          <h3 className="text-5xl font-bold text-blue-400">
+          <h3 className="text-5xl font-bold text-blue-600 dark:text-blue-400">
             <CountUp end={stats.serviceCount} duration={2} />
           </h3>
-          <p className="mt-2 text-lg">Total Services</p>
+          <p className="mt-2 text-lg">Total&nbsp;Services</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

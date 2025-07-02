@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../contexts/AuthProvider';
 import Loader from '../pages/Loader';
@@ -8,7 +8,7 @@ const MyReviews = () => {
     document.title = 'myReviews';
   }, []);
 
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingReview, setEditingReview] = useState(null);
@@ -117,45 +117,49 @@ const MyReviews = () => {
       });
   };
 
-  if (loading) return <Loader></Loader>;
+  if (loading) return <Loader />;
 
   return (
-    <div className="max-w-3xl mx-auto mt-8 p-6 bg-gray-900 text-white rounded-lg">
+    <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-2xl border border-gray-200 dark:border-gray-700 shadow-md">
+      {/* Title */}
       <div className="relative my-10">
-        {/* Thin full-width line */}
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
-          <div className="w-full border-t border-gray-500"></div>
+          <div className="w-full border-t border-gray-400 dark:border-gray-600"></div>
         </div>
-
-        {/* Centered text */}
         <div className="relative flex justify-center">
-          <span className="bg-gray-900 px-4 text-2xl font-semibold text-white">
+          <span className="bg-white dark:bg-gray-900 px-4 text-2xl font-semibold">
             My Added Reviews
           </span>
         </div>
       </div>
 
+      {/* Reviews List */}
       {myReviews.length === 0 ? (
-        <p>No reviews found!</p>
+        <p className="text-center text-gray-600 dark:text-gray-400">
+          No reviews found!
+        </p>
       ) : (
         myReviews.map((rev, index) => (
-          <div key={index} className="bg-gray-800 p-4 rounded mb-4 shadow">
-            <h3 className="text-xl font-semibold">{rev.serviceTitle}</h3>
-            <p className="text-yellow-400">Rating: {rev.rating} ⭐</p>
+          <div
+            key={index}
+            className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-5 rounded-xl mb-5 shadow-sm"
+          >
+            <h3 className="text-xl font-bold">{rev.serviceTitle}</h3>
+            <p className="text-yellow-500">Rating: {rev.rating} ⭐</p>
             <p className="mt-1">{rev.text}</p>
-            <p className="text-sm text-gray-400 mt-1">
+            <p className="text-sm text-gray-500 mt-1">
               Posted on: {new Date(rev.date).toLocaleDateString()}
             </p>
             <div className="mt-3 flex gap-2">
               <button
                 onClick={() => setEditingReview(rev)}
-                className="bg-blue-600 px-4 py-1 rounded hover:bg-blue-700"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded"
               >
                 Update
               </button>
               <button
                 onClick={() => handleDelete(rev.serviceId, rev.date)}
-                className="bg-red-600 px-4 py-1 rounded hover:bg-red-700"
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded"
               >
                 Delete
               </button>
@@ -167,20 +171,20 @@ const MyReviews = () => {
       {/* Edit Modal */}
       {editingReview && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-          <div className="bg-white text-black p-6 rounded-lg w-full max-w-md relative">
+          <div className="bg-white text-black dark:bg-gray-800 dark:text-white p-6 rounded-lg w-full max-w-md border border-gray-300 dark:border-gray-600 shadow-lg">
             <h2 className="text-xl font-bold mb-4">Update Review</h2>
             <form onSubmit={handleUpdateSubmit}>
               <textarea
                 name="text"
                 defaultValue={editingReview.text}
-                className="w-full p-2 border rounded mb-3"
+                className="w-full p-2 border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 rounded mb-3"
                 rows="3"
                 required
               />
               <select
                 name="rating"
                 defaultValue={editingReview.rating}
-                className="w-full p-2 border rounded mb-4"
+                className="w-full p-2 border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 rounded mb-4"
               >
                 <option value="5">🌟🌟🌟🌟🌟 (5)</option>
                 <option value="4">🌟🌟🌟🌟 (4)</option>
@@ -192,13 +196,13 @@ const MyReviews = () => {
                 <button
                   type="button"
                   onClick={() => setEditingReview(null)}
-                  className="bg-gray-400 text-black px-4 py-1 rounded"
+                  className="bg-gray-400 text-black dark:bg-gray-600 dark:text-white px-4 py-1 rounded"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-600 text-white px-4 py-1 rounded"
+                  className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
                 >
                   Save
                 </button>

@@ -1,16 +1,17 @@
+// src/components/ContactSection.jsx
 const ContactSection = () => {
   return (
-    <section className="bg-black text-white py-12 px-6 max-w-3xl mx-auto rounded-lg shadow-lg mt-10">
+    <section
+      className="bg-white dark:bg-black text-black dark:text-white max-w-3xl mx-auto rounded-lg shadow-lg py-10 px-4 md:px-10 mt-20"
+    >
+      {/* শিরোনাম + ডিভাইডার */}
       <div className="relative my-10">
-        {/* Thin full-width line */}
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
-          <div className="w-full border-t border-gray-500"></div>
+          <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
         </div>
-
-        {/* Centered text */}
         <div className="relative flex justify-center">
-          <span className="bg-black px-4 text-2xl font-semibold text-white">
-            Contact Us
+          <span className="bg-white dark:bg-black px-4 text-2xl font-semibold">
+            Contact&nbsp;Us
           </span>
         </div>
       </div>
@@ -27,7 +28,11 @@ const ContactSection = () => {
             name="name"
             placeholder="Your Name"
             required
-            className="w-full px-4 py-3 rounded-md bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+            className="w-full px-4 py-3 rounded-md
+                       bg-gray-100 dark:bg-gray-900
+                       border border-gray-300 dark:border-gray-700
+                       focus:outline-none focus:ring-2 focus:ring-blue-500
+                       text-black dark:text-white"
           />
         </div>
 
@@ -42,7 +47,11 @@ const ContactSection = () => {
             name="email"
             placeholder="you@example.com"
             required
-            className="w-full px-4 py-3 rounded-md bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+            className="w-full px-4 py-3 rounded-md
+                       bg-gray-100 dark:bg-gray-900
+                       border border-gray-300 dark:border-gray-700
+                       focus:outline-none focus:ring-2 focus:ring-blue-500
+                       text-black dark:text-white"
           />
         </div>
 
@@ -57,16 +66,21 @@ const ContactSection = () => {
             rows="5"
             placeholder="Write your message here..."
             required
-            className="w-full px-4 py-3 rounded-md bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white resize-none"
+            className="w-full px-4 py-3 rounded-md
+                       bg-gray-100 dark:bg-gray-900
+                       border border-gray-300 dark:border-gray-700
+                       focus:outline-none focus:ring-2 focus:ring-blue-500
+                       text-black dark:text-white resize-none"
           ></textarea>
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 transition py-3 rounded-md font-semibold"
+          className="w-full bg-blue-600 hover:bg-blue-700 transition py-3
+                     rounded-md font-semibold text-white"
         >
-          Send Message
+          Send&nbsp;Message
         </button>
       </form>
     </section>

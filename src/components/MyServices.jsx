@@ -82,7 +82,7 @@ const MyServices = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10 ">
+    <div className="max-w-6xl mx-auto px-4 ">
       <div className="relative my-10">
         {/* Thin full-width line */}
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
@@ -91,7 +91,7 @@ const MyServices = () => {
 
         {/* Centered text */}
         <div className="relative flex justify-center">
-          <span className="bg-gray-900 px-4 text-2xl font-semibold text-white">
+          <span className="dark:bg-gray-900 bg-white px-4 text-2xl font-semibold dark:text-white  text-black">
             My Added Services
           </span>
         </div>
@@ -109,7 +109,7 @@ const MyServices = () => {
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-gray-900 text-white rounded-md">
+          <table className="min-w-full dark:bg-gray-900 bg-white dark:text-white  text-black rounded-md">
             <thead>
               <tr className="text-left border-b border-gray-700">
                 <th className="py-3 px-4">Image</th>
@@ -141,13 +141,13 @@ const MyServices = () => {
                   <td className="py-2 px-4 flex gap-2">
                     <button
                       onClick={() => handleUpdate(service._id)}
-                      className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm"
+                      className="bg-blue-500 hover:bg-blue-600 dark:text-white  text-black py-1 px-3 rounded text-sm"
                     >
                       Update
                     </button>
                     <button
                       onClick={() => handleDelete(service._id)}
-                      className="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded text-sm"
+                      className="bg-red-600 hover:bg-red-700 dark:text-white  text-black py-1 px-3 rounded text-sm"
                     >
                       Delete
                     </button>
