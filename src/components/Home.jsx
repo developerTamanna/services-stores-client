@@ -5,6 +5,7 @@ import CountupSection from './CountupSection';
 import FeaturedSection from './FeaturedSection';
 import WhyChooseUs from './WhyChooseUs';
 import MeetOurPartners from './MeetOurPartners';
+import FaqSection from './FaqSection';
 
 const Home = () => {
   useEffect(() => {
@@ -29,6 +30,9 @@ const Home = () => {
       </div>
       <div>
         <MeetOurPartners></MeetOurPartners>
+      </div>
+      <div>
+        <FaqSection></FaqSection>
       </div>
     </div>
   );
