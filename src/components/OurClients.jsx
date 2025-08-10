@@ -25,7 +25,7 @@ const OurClients = () => {
     },
     {
       name: 'Adobe',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Adobe_Corporate_Logo.png',
+      logo: 'https://i.ibb.co.com/G3MQfbQj/media-1e1d6ce6caa68dfd49689c46528c152d9fdeaad6f.jpg',
     },
   ];
 
