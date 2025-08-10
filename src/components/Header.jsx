@@ -74,6 +74,7 @@ const Header = () => {
     <header className="dark:bg-black bg-white shadow-md sticky w-full top-0 z-50">
       <div className="w-11/12 mx-auto  py-3 flex items-center justify-between">
         {/* Logo */}
+        
         <NavLink
           to="/"
           className="text-2xl font-bold dark:text-white text-black"
