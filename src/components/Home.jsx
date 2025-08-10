@@ -7,6 +7,7 @@ import WhyChooseUs from './WhyChooseUs';
 import MeetOurPartners from './MeetOurPartners';
 import FaqSection from './FaqSection';
 import WebsiteServices from './WebsiteServices';
+import OurClients from './OurClients';
 
 const Home = () => {
   useEffect(() => {
@@ -36,6 +37,7 @@ const Home = () => {
         <FaqSection></FaqSection>
       </div>
       <WebsiteServices></WebsiteServices>
+      <OurClients></OurClients>
     </div>
   );
 };
